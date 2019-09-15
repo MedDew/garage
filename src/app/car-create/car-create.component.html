@@ -1,3 +1,28 @@
-<p>
-  car-create works!
-</p>
+<h1>Car creation</h1>
+<form [formGroup]="carForm" novalidate>
+  <label>Brand : </label>
+  <br/>
+  <input type="text" formControlName="brand" placeholder="Brand"/>
+  <br/>
+  <br/>
+  
+  <label>Model : </label>
+  <br/>
+  <input type="text" formControlName="model" placeholder="Model"/>
+  <br/>
+  <br/>
+  
+  <label>Color : </label>
+  <br/>
+  <input type="text" formControlName="color" placeholder="Color"/>
+  <br/>
+  <br/>
+  
+  <label>Horse Power : </label>
+  <br/>
+  <input type="text" formControlName="horsePower" placeholder="HorsePower"/>
+  <br/>
+  <br/>
+
+  <input type="submit"  value="Create"/>
+</form>
