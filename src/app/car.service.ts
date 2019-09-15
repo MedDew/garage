@@ -25,7 +25,7 @@ export class CarService {
     this.headers =  {headers : new HttpHeaders({"Content-Type" : "application/json", "Accept" : "application/json"}) }; 
   }
   
-  public postCars(postedCar : Car) : Observable<Car>{
+  public postCar(postedCar : Car) : Observable<Car>{
     console.log("API URL : "+this.apiURL);
     const url = `${this.apiURL}car`
     console.log("CAR LIST URL : "+url);
