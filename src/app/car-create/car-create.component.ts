@@ -38,7 +38,7 @@ export class CarCreateComponent implements OnInit {
       console.log("CREATE CAR");
       const carCreated = <Car> this.carForm.value;
 
-      this.createCar(carCreated)
+      this.createCar(carCreated);
     }
   }
 
