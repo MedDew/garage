@@ -12,7 +12,9 @@ export class CarService {
 
   private headers : Object;
 
-  constructor( private httpClient : HttpClient, @Inject(APPCONFIG) private apiURL : String) { }
+  constructor( private httpClient : HttpClient, @Inject(APPCONFIG) private apiURL : String) {
+    this.headers =  {headers : new HttpHeaders({"Content-Type" : "application/json", "Accept" : "application/json"}) };
+  }
 
   public getCars() : Observable<Car[]>{
     console.log("API URL : "+this.apiURL);
@@ -20,15 +22,14 @@ export class CarService {
     console.log("CAR LIST URL : "+url);
     return this.httpClient.get<Car[]>(url).pipe(
       map(result => result)
-    );
-
-    this.headers =  {headers : new HttpHeaders({"Content-Type" : "application/json", "Accept" : "application/json"}) }; 
+    ); 
   }
   
   public postCar(postedCar : Car) : Observable<Car>{
     console.log("API URL : "+this.apiURL);
     const url = `${this.apiURL}car`
-    console.log("CAR LIST URL : "+url);
+    console.log("CAR POST URL : "+url);
+    console.log("POSTED CAR : ", postedCar);
     return this.httpClient.post<Car>(url, JSON.stringify(postedCar), this.headers).pipe(
       map(result => result)
     );
