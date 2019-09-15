@@ -13,6 +13,7 @@ export class CarCreateComponent implements OnInit {
   private carForm : FormGroup;
   private carFormSubmitted : boolean;
   private carCreated : Car;
+  private isCarSaved : boolean;
 
   constructor(private formBuilder : FormBuilder, private carService : CarService) {
     this.carForm = this.formBuilder.group({
@@ -26,6 +27,7 @@ export class CarCreateComponent implements OnInit {
 
   ngOnInit() {
     this.carFormSubmitted = false;
+    this.isCarSaved = false;
   }
 
   public onSubmit(){
@@ -37,19 +39,24 @@ export class CarCreateComponent implements OnInit {
     else{
       console.log("CREATE CAR");
       const carCreated = <Car> this.carForm.value;
-
       this.createCar(carCreated);
+      this.isCarSaved = true;
     }
   }
 
   public isCarFormSubmitted() : boolean{
     return this.carFormSubmitted;
   }
+  
+  public getsCarSaved() : boolean{
+    return this.isCarSaved;
+  }
 
   private createCar( postedCar : Car){
-    this.carService.postCar(postedCar).subscribe(car => 
+    this.carService.postCar(postedCar).subscribe(car =>{ 
+      console.log("CREATED CAR : ", car);
       this.setCarCreated(car)
-    );
+    });
   }
 
   private setCarCreated(carCreated : Car) :void {
