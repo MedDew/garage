@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { CarService } from '../car.service';
+import { Car } from '../shared/car.model';
 
 @Component({
   selector: 'app-car-create',
@@ -10,8 +12,9 @@ export class CarCreateComponent implements OnInit {
 
   private carForm : FormGroup;
   private carFormSubmitted : boolean;
+  private carCreated : Car;
 
-  constructor(private formBuilder : FormBuilder) {
+  constructor(private formBuilder : FormBuilder, private carService : CarService) {
     this.carForm = this.formBuilder.group({
       brand : ["", [Validators.required]],
       model : ["", [Validators.required]],
@@ -33,11 +36,28 @@ export class CarCreateComponent implements OnInit {
     }
     else{
       console.log("CREATE CAR");
+      const carCreated = <Car> this.carForm.value;
+
+      this.createCar(carCreated)
     }
   }
 
   public isCarFormSubmitted() : boolean{
     return this.carFormSubmitted;
+  }
+
+  private createCar( postedCar : Car){
+    this.carService.postCar(postedCar).subscribe(car => 
+      this.setCarCreated(car)
+    );
+  }
+
+  private setCarCreated(carCreated : Car) :void {
+    this.carCreated = carCreated;
+  }
+ 
+  public getCarCreated() : Car {
+    return this.carCreated;
   }
 
 }
