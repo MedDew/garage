@@ -24,6 +24,7 @@
 !.vscode/launch.json
 !.vscode/extensions.json
 .editorconfig
+.vscode/
 
 # misc
 /.sass-cache
