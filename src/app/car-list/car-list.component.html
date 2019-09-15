@@ -1,3 +1,20 @@
-<p>
-  car-list works!
-</p>
+<h1>
+  Car List
+</h1>
+
+<table>
+  <tr>
+    <th>Id</th>
+    <th>Brand</th>
+    <th>Model</th>
+    <th>Color</th>
+    <th>Horse Power</th>
+  </tr>
+  <tr *ngFor="let car of getCarList()" >
+    <td>{{car.id}}</td>
+    <td>{{car.brand}}</td>
+    <td>{{car.model}}</td>
+    <td>{{car.color}}</td>
+    <td>{{car.horsePower}}</td>
+  </tr>
+</table>
