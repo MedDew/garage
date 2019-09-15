@@ -7,6 +7,7 @@ import { CarListComponent } from './car-list/car-list.component';
 import { APPCONFIG } from './APPCONFIG';
 import { HttpClientModule } from '@angular/common/http';
 import { CarCreateComponent } from './car-create/car-create.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { CarCreateComponent } from './car-create/car-create.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [{provide : APPCONFIG , useValue : APPCONFIG.CARS_API_URL}],
   bootstrap: [AppComponent]
