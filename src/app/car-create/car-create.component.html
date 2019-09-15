@@ -1,5 +1,5 @@
 <h1>Car creation</h1>
-<div *ngIf="!getsCarSaved()">
+<div *ngIf="!isCarCreated()">
 
   <form [formGroup]="carForm" novalidate (ngSubmit)="onSubmit()">
     <label>Brand : </label>
@@ -15,7 +15,7 @@
     <br/>
     <input type="text" formControlName="model" placeholder="Model"/>
     <br/>
-    <div *ngIf="isCarFormSubmitted() && carForm.controls.model.errors != null">
+    <div *ngIf="isCarFormSubmitted() && carForm.controls.model.touched && carForm.controls.model.errors != null">
       <span *ngIf="carForm.controls.model.errors.required" class="error">
         Please fill the car model
       </span>
@@ -26,7 +26,7 @@
     <br/>
     <input type="text" formControlName="color" placeholder="Color"/>
     <br/>
-    <div *ngIf="isCarFormSubmitted() && carForm.controls.color.errors != null">
+    <div *ngIf="isCarFormSubmitted() && carForm.controls.model.touched && carForm.controls.color.errors != null">
       <span *ngIf="carForm.controls.color.errors.required" class="error">
         Please give the car a color
       </span>
@@ -37,7 +37,7 @@
     <br/>
     <input type="text" formControlName="horsePower" placeholder="HorsePower"/>
     <br/>
-    <div *ngIf="isCarFormSubmitted() && carForm.controls.horsePower.errors != null">
+    <div *ngIf="isCarFormSubmitted() && carForm.controls.model.touched && carForm.controls.horsePower.errors != null">
       <span *ngIf="carForm.controls.horsePower.errors.required" class="error">
         Please fill the car horse power
       </span>
@@ -47,7 +47,7 @@
     <input type="submit"  value="Create"/>
   </form>
 </div>
-<div *ngIf="getsCarSaved()">
+<div *ngIf="isCarCreated()">
   <p>Th following car has been created</p>
   <ul>
     <li>Brand : {{getCarCreated().brand}}</li>
@@ -55,4 +55,6 @@
     <li>Color : {{getCarCreated().color}}</li>
     <li>Horsepower : {{getCarCreated().horsePower}}</li>
   </ul>
+
+  <button type="button" (click)="backToCarForm()">Back to car form</button>
 </div>
