@@ -6,11 +6,13 @@ import { AppComponent } from './app.component';
 import { CarListComponent } from './car-list/car-list.component';
 import { APPCONFIG } from './APPCONFIG';
 import { HttpClientModule } from '@angular/common/http';
+import { CarCreateComponent } from './car-create/car-create.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CarListComponent
+    CarListComponent,
+    CarCreateComponent
   ],
   imports: [
     BrowserModule,
