@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormGroupDirective } from '@angular/forms';
 import { CarService } from '../car.service';
 import { Car } from '../shared/car.model';
 
@@ -38,8 +38,9 @@ export class CarCreateComponent implements OnInit {
     }
     else{
       console.log("CREATE CAR");
+      console.log("CAR FORM SUBMITTED",this.carForm);
       const carCreated = <Car> this.carForm.value;
-      this.createCar(carCreated);
+      //this.createCar(carCreated);
       this.isCarSaved = true;
     }
   }
@@ -48,7 +49,7 @@ export class CarCreateComponent implements OnInit {
     return this.carFormSubmitted;
   }
   
-  public getsCarSaved() : boolean{
+  public isCarCreated() : boolean{
     return this.isCarSaved;
   }
 
@@ -67,4 +68,9 @@ export class CarCreateComponent implements OnInit {
     return this.carCreated;
   }
 
+  public backToCarForm(){
+    console.log("GO BACK TO CAR FORM");
+    this.isCarSaved = false;
+    this.carForm.reset();
+  }
 }
