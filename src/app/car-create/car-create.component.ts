@@ -9,6 +9,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class CarCreateComponent implements OnInit {
 
   private carForm : FormGroup;
+  private carFormSubmitted : boolean;
 
   constructor(private formBuilder : FormBuilder) {
     this.carForm = this.formBuilder.group({
@@ -17,9 +18,26 @@ export class CarCreateComponent implements OnInit {
       color : ["", [Validators.required]],
       horsePower : ["", [Validators.required]],
     });
+    console.log("CONSTRUCTOR",this.carForm);
   }
 
   ngOnInit() {
+    this.carFormSubmitted = false;
+  }
+
+  public onSubmit(){
+    console.log(this.carForm);
+    this.carFormSubmitted = true;
+    if(this.carForm.invalid){
+      console.log("CAR FORM INVALID");
+    }
+    else{
+      console.log("CREATE CAR");
+    }
+  }
+
+  public isCarFormSubmitted() : boolean{
+    return this.carFormSubmitted;
   }
 
 }
