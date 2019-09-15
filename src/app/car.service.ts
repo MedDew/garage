@@ -34,4 +34,13 @@ export class CarService {
       map(result => result)
     );
   }
+
+  public getCar(carId : String) : Observable<Car>{
+    console.log("API URL : "+this.apiURL);
+    const url = `${this.apiURL}car/${carId}`
+    console.log("CAR DETAIL URL : "+url);
+    return this.httpClient.get<Car>(url).pipe(
+      map(result => result)
+    ); 
+  }
 }
